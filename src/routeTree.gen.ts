@@ -13,7 +13,6 @@ import { Route as RanksRouteImport } from './routes/ranks'
 import { Route as KeysRouteImport } from './routes/keys'
 import { Route as BundlesRouteImport } from './routes/bundles'
 import { Route as AccountRouteImport } from './routes/account'
-import { Route as IndexRouteImport } from './routes/index'
 
 const RanksRoute = RanksRouteImport.update({
   id: '/ranks',
@@ -35,21 +34,14 @@ const AccountRoute = AccountRouteImport.update({
   path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/bundles': typeof BundlesRoute
   '/keys': typeof KeysRoute
   '/ranks': typeof RanksRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/bundles': typeof BundlesRoute
   '/keys': typeof KeysRoute
@@ -57,7 +49,6 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/bundles': typeof BundlesRoute
   '/keys': typeof KeysRoute
@@ -65,14 +56,13 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/account' | '/bundles' | '/keys' | '/ranks'
+  fullPaths: '/account' | '/bundles' | '/keys' | '/ranks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/account' | '/bundles' | '/keys' | '/ranks'
-  id: '__root__' | '/' | '/account' | '/bundles' | '/keys' | '/ranks'
+  to: '/account' | '/bundles' | '/keys' | '/ranks'
+  id: '__root__' | '/account' | '/bundles' | '/keys' | '/ranks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AccountRoute: typeof AccountRoute
   BundlesRoute: typeof BundlesRoute
   KeysRoute: typeof KeysRoute
@@ -109,18 +99,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AccountRoute: AccountRoute,
   BundlesRoute: BundlesRoute,
   KeysRoute: KeysRoute,
