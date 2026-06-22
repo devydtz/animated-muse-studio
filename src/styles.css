@@ -62,26 +62,28 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --radius: 0.875rem;
+  --background: oklch(0.14 0.035 295);
+  --foreground: oklch(0.96 0.01 295);
+  --card: oklch(0.18 0.04 295);
+  --card-foreground: oklch(0.96 0.01 295);
+  --popover: oklch(0.18 0.04 295);
+  --popover-foreground: oklch(0.96 0.01 295);
+  --primary: oklch(0.85 0.08 295);
+  --primary-foreground: oklch(0.18 0.05 295);
+  --secondary: oklch(0.24 0.05 295);
+  --secondary-foreground: oklch(0.96 0.01 295);
+  --muted: oklch(0.22 0.04 295);
+  --muted-foreground: oklch(0.72 0.04 295);
+  --accent: oklch(0.78 0.13 295);
+  --accent-foreground: oklch(0.18 0.05 295);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 295);
+  --border: oklch(0.3 0.05 295 / 60%);
+  --input: oklch(0.28 0.05 295);
+  --ring: oklch(0.78 0.12 295);
+  --rare: oklch(0.78 0.13 230);
+  --legendary: oklch(0.82 0.16 70);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +142,112 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: "Inter", system-ui, sans-serif;
+    overflow-x: hidden;
   }
+}
+
+@theme inline {
+  --color-rare: var(--rare);
+  --color-legendary: var(--legendary);
+  --font-pixel: "Press Start 2P", monospace;
+  --font-display: "VT323", monospace;
+}
+
+/* ============ Starfield + shooting stars ============ */
+.starfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top, oklch(0.22 0.07 295 / 0.6), transparent 60%),
+    radial-gradient(ellipse at bottom, oklch(0.12 0.04 295), transparent 70%);
+}
+.stars-layer {
+  position: absolute;
+  inset: -50%;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 70% 80%, white, transparent),
+    radial-gradient(1.5px 1.5px at 40% 60%, white, transparent),
+    radial-gradient(1px 1px at 85% 15%, white, transparent),
+    radial-gradient(1px 1px at 10% 75%, white, transparent),
+    radial-gradient(2px 2px at 55% 25%, white, transparent),
+    radial-gradient(1px 1px at 35% 90%, white, transparent),
+    radial-gradient(1px 1px at 90% 50%, white, transparent),
+    radial-gradient(1.5px 1.5px at 25% 10%, white, transparent),
+    radial-gradient(1px 1px at 65% 45%, white, transparent);
+  background-size: 600px 600px;
+  opacity: 0.7;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+.stars-layer.layer-2 {
+  background-size: 900px 900px;
+  opacity: 0.45;
+  animation-duration: 6s;
+  animation-delay: -2s;
+}
+.stars-layer.layer-3 {
+  background-size: 1300px 1300px;
+  opacity: 0.3;
+  animation-duration: 8s;
+  animation-delay: -4s;
+}
+@keyframes twinkle {
+  0% { opacity: 0.25; }
+  100% { opacity: 0.85; }
+}
+
+.shooting-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, oklch(0.95 0.02 295), oklch(0.85 0.13 295), transparent);
+  border-radius: 999px;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px oklch(0.85 0.13 295));
+  transform-origin: left center;
+  animation: shoot 5s ease-in infinite;
+}
+.shooting-star::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 12px 2px white;
+}
+@keyframes shoot {
+  0% { transform: translate3d(-10%, -10%, 0) rotate(20deg); opacity: 0; }
+  8% { opacity: 1; }
+  40% { transform: translate3d(120vw, 60vh, 0) rotate(20deg); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.logo-float {
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px oklch(0.4 0.15 295 / 0.5));
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.pixel-card {
+  background: linear-gradient(180deg, oklch(0.2 0.05 295 / 0.7), oklch(0.16 0.04 295 / 0.7));
+  border: 1px solid oklch(0.4 0.08 295 / 0.4);
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.pixel-card:hover {
+  transform: translateY(-4px);
+  border-color: oklch(0.7 0.12 295 / 0.7);
+  box-shadow: 0 20px 50px -20px oklch(0.5 0.18 295 / 0.6);
 }
