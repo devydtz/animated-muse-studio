@@ -1,13 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { KeyRound, Key, Sparkles, Moon } from "lucide-react";
 import { Starfield } from "@/components/Starfield";
 import { Navbar } from "@/components/Navbar";
 import { SiteFooter } from "@/components/SiteFooter";
+import { PageHero } from "@/components/PageHero";
+import { ProductGrid, type Product } from "@/components/ProductGrid";
+
+const keys: Product[] = [
+  {
+    name: "Common Key", tagline: "Open the Common Crate. Reliable, useful loot.", price: "$1.99", rarity: "Common", Icon: Key,
+    perks: ["Enchanted tools", "Building blocks", "Food bundles", "Small chance of rare drops"],
+  },
+  {
+    name: "Rare Key", tagline: "Unlock the Rare Crate for upgraded gear.", price: "$3.99", rarity: "Rare", Icon: KeyRound,
+    perks: ["Diamond gear (enchanted)", "Rare cosmetics", "XP boosters", "Chance at Epic drops"],
+  },
+  {
+    name: "Epic Key", tagline: "Crack the Epic Crate. Powerful rewards await.", price: "$5.99", rarity: "Epic", Icon: KeyRound, featured: true,
+    perks: ["Netherite gear", "Custom enchants", "Pet eggs", "Particle trails"],
+  },
+  {
+    name: "Lunar Key", tagline: "Open the Lunar Crate for a chance at the rarest gear on the server.", price: "$7.99", rarity: "Legendary", Icon: Moon,
+    perks: ["Mythic enchants", "Exclusive Lunar cosmetics", "Rare pet eggs", "Chance at Mythic gear"],
+  },
+  {
+    name: "Eclipse Key", tagline: "The rarest crate of all. Open at your own risk.", price: "$12.99", rarity: "Mythic", Icon: Sparkles,
+    perks: ["Guaranteed Mythic item", "Custom particle wings", "Eclipse-only cosmetics", "Bonus 1,000 server coins"],
+  },
+  {
+    name: "Key Bundle ×10", tagline: "10 Rare Keys at a discount.", price: "$29.99", rarity: "Epic", Icon: KeyRound,
+    perks: ["10× Rare Keys", "Bonus 1 Epic Key", "Stacks with rank multipliers"],
+  },
+];
 
 export const Route = createFileRoute("/keys")({
   head: () => ({
     meta: [
       { title: "Crate Keys — Lunaris Craft" },
-      { name: "description", content: "Open mystical crates and discover rare loot on Lunaris Craft." },
+      { name: "description", content: "Open mystical crates and discover rare loot, enchanted gear, and legendary treasures." },
+      { property: "og:title", content: "Crate Keys — Lunaris Craft" },
+      { property: "og:description", content: "Open mystical crates and discover rare loot, enchanted gear, and legendary treasures." },
     ],
   }),
   component: KeysPage,
@@ -19,11 +51,12 @@ function KeysPage() {
       <Starfield />
       <div className="relative z-10">
         <Navbar />
-        <section className="mx-auto max-w-4xl px-6 py-28 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">Unlock the Unknown</p>
-          <h1 className="mt-3 font-display text-6xl">Crate Keys</h1>
-          <p className="mt-5 text-muted-foreground">Key catalog coming soon.</p>
-        </section>
+        <PageHero
+          eyebrow="Unlock the Unknown"
+          title="Crate Keys"
+          description="Open mystical crates and discover rare loot, enchanted gear, and legendary treasures pulled straight from the moonlit vaults."
+        />
+        <ProductGrid products={keys} />
         <SiteFooter />
       </div>
     </div>
