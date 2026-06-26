@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/lunaris-logo.png.asset.json";
+import logoAsset from "@/assets/lunaris.logo.png";
 
 export function SiteFooter() {
   return (
