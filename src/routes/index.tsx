@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/lunaris-logo.png.asset.json";
+import logoAsset from "@/assets/lunaris.logo.png";
 import { Starfield } from "@/components/Starfield";
 import { Navbar } from "@/components/Navbar";
 import { PathCards } from "@/components/PathCards";
