@@ -6,12 +6,9 @@ import tsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite(),
+    TanStackRouterVite({ autoCodeSplitting: true }),
     tailwindcss(),
     react(),
     tsConfigPaths(),
   ],
-  server: {
-    entry: "server",
-  },
 });
