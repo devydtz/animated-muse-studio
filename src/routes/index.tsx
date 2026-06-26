@@ -15,8 +15,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Support the server and unlock ranks, cosmetic keys, and bundles to enhance your Lunaris Craft adventure." },
       { property: "og:title", content: "Lunaris Craft — Official Minecraft Server Store" },
       { property: "og:description", content: "Support the server and unlock ranks, cosmetic keys, and bundles to enhance your Lunaris Craft adventure." },
-      { property: "og:image", content: logoAsset.url },
-      { name: "twitter:image", content: logoAsset.url },
+      { property: "og:image", content: logoAsset },
+      { name: "twitter:image", content: logoAsset },
     ],
   }),
   component: Home,
@@ -42,7 +42,7 @@ function Hero() {
   return (
     <section className="relative flex flex-col items-center justify-center px-6 pt-16 pb-28 text-center md:pt-24 md:pb-36">
       <img
-        src={logoAsset.url}
+        src={logoAsset}
         alt="Lunaris Craft"
         className="logo-float w-full max-w-3xl select-none"
         draggable={false}
