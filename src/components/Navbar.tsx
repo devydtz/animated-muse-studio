@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingCart, User as UserIcon } from "lucide-react";
-import logoAsset from "@/assets/lunaris-logo.png.asset.json";
+import logoAsset from "@/assets/lunaris-logo.png";
 import { useAccount } from "@/lib/account";
 import { useCart } from "@/lib/cart";
 
