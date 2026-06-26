@@ -45,7 +45,7 @@ export function FeaturedItems() {
               </div>
               <h3 className="mt-5 text-lg font-bold text-foreground">{item.name}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{item.copy}</p>
-              <div className="mt-5 flex items-center justify-between">
+              <div className="mt-5 flex flex-col items-center gap-3">
                 <span className="text-xl font-bold text-foreground">{item.price}</span>
                 <button
                   onClick={() =>

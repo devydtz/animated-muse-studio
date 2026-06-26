@@ -59,7 +59,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
                 </li>
               ))}
             </ul>
-            <div className="mt-6 flex items-center justify-between border-t border-border/40 pt-5">
+            <div className="mt-6 flex flex-col items-center gap-3 border-t border-border/40 pt-5">
               <span className="text-2xl font-bold text-foreground">{p.price}</span>
               <button
                 onClick={() =>
