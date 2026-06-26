@@ -8,27 +8,27 @@ import { ProductGrid, type Product } from "@/components/ProductGrid";
 
 const ranks: Product[] = [
   {
-    name: "Initiate", tagline: "First step into the moonlit realm.", price: "$2.99", rarity: "Common", Icon: Shield,
+    id: "rank-initiate", category: "rank", name: "Initiate", tagline: "First step into the moonlit realm.", price: "$2.99", rarity: "Common", Icon: Shield,
     perks: ["Colored chat name", "/hat command", "2 home points", "Access to /kit initiate"],
   },
   {
-    name: "VIP", tagline: "Access exclusive commands, colored chat, and VIP-only areas.", price: "$4.99", rarity: "Rare", Icon: Star,
+    id: "rank-vip", category: "rank", name: "VIP", tagline: "Access exclusive commands, colored chat, and VIP-only areas.", price: "$4.99", rarity: "Rare", Icon: Star,
     perks: ["All Initiate perks", "/fly in lobby", "5 home points", "VIP-only mining world", "Weekly VIP crate key"],
   },
   {
-    name: "Knight", tagline: "Earn your seat at the round table.", price: "$9.99", rarity: "Epic", Icon: Crown, featured: true,
+    id: "rank-knight", category: "rank", name: "Knight", tagline: "Earn your seat at the round table.", price: "$9.99", rarity: "Epic", Icon: Crown, featured: true,
     perks: ["All VIP perks", "/nick custom nickname", "10 home points", "Private vault (54 slots)", "Monthly Lunar crate key"],
   },
   {
-    name: "Lunar", tagline: "Touched by the moon's quiet power.", price: "$14.99", rarity: "Legendary", Icon: Moon,
+    id: "rank-lunar", category: "rank", name: "Lunar", tagline: "Touched by the moon's quiet power.", price: "$14.99", rarity: "Legendary", Icon: Moon,
     perks: ["All Knight perks", "/fly in survival", "20 home points", "Custom particle trails", "2 Lunar crate keys monthly"],
   },
   {
-    name: "Legend", tagline: "The ultimate rank. Custom prefix, fly in survival, and more.", price: "$19.99", rarity: "Legendary", Icon: Sparkles,
+    id: "rank-legend", category: "rank", name: "Legend", tagline: "The ultimate rank. Custom prefix, fly in survival, and more.", price: "$19.99", rarity: "Legendary", Icon: Sparkles,
     perks: ["All Lunar perks", "Custom prefix in chat", "Unlimited homes", "Personal /warp", "Exclusive Legend cosmetics"],
   },
   {
-    name: "Mythic", tagline: "Stories will be told.", price: "$29.99", rarity: "Mythic", Icon: Sparkles,
+    id: "rank-mythic", category: "rank", name: "Mythic", tagline: "Stories will be told.", price: "$29.99", rarity: "Mythic", Icon: Sparkles,
     perks: ["All Legend perks", "Early access to new features", "Custom join message", "Mythic-only Discord channel", "Personal staff support"],
   },
 ];

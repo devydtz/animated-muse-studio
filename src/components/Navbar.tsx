@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingCart, Pickaxe } from "lucide-react";
+import { ShoppingCart, User as UserIcon } from "lucide-react";
 import logoAsset from "@/assets/lunaris-logo.png.asset.json";
+import { useAccount } from "@/lib/account";
+import { useCart } from "@/lib/cart";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -11,6 +13,8 @@ const nav = [
 ] as const;
 
 export function Navbar() {
+  const { account } = useAccount();
+  const { count, open } = useCart();
   return (
     <header className="sticky top-0 z-30 border-b border-border/40 bg-background/60 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
@@ -41,18 +45,41 @@ export function Navbar() {
             <DiscordIcon className="h-4 w-4" />
           </a>
           <button
+            onClick={open}
             aria-label="Cart"
-            className="grid h-9 w-9 place-items-center rounded-full border border-border/60 bg-card/60 text-muted-foreground transition hover:text-foreground"
+            className="relative grid h-9 w-9 place-items-center rounded-full border border-border/60 bg-card/60 text-muted-foreground transition hover:text-foreground"
           >
             <ShoppingCart className="h-4 w-4" />
+            {count > 0 && (
+              <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] font-bold text-accent-foreground">
+                {count}
+              </span>
+            )}
           </button>
-          <a
-            href="minecraft://mclunaris.fun"
-            className="ml-1 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-accent"
-          >
-            <Pickaxe className="h-4 w-4" />
-            Connect
-          </a>
+          {account ? (
+            <Link
+              to="/account"
+              className="ml-1 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-card/60 py-1 pl-1 pr-3 text-sm font-semibold text-foreground transition hover:border-accent hover:bg-card"
+            >
+              <img
+                src={account.avatarUrl}
+                alt=""
+                className="h-7 w-7 rounded-full ring-1 ring-accent/50"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = "https://mc-heads.net/avatar/MHF_Steve/64";
+                }}
+              />
+              <span className="max-w-[8rem] truncate">{account.displayName}</span>
+            </Link>
+          ) : (
+            <Link
+              to="/account"
+              className="ml-1 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-accent hover:scale-105"
+            >
+              <UserIcon className="h-4 w-4" />
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
     </header>
